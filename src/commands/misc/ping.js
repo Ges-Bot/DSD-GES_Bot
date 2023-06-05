@@ -11,12 +11,9 @@ module.exports = {
     callback: async (client, interaction) => {
         const tryPong = await interaction.reply({content: "Attention, pong imminent...", fetchReply: true});
         const embedQuestion = {
-            color: 0xFFEE45,
+            color: 0x735B8B,
             title: '🏓 Pong!',
             url: 'https://www.speedtest.net/run',
-            thumbnail: {
-                url: 'https://cdn.discordapp.com/avatars/1096778666131853313/f52fbb7e94b9899f4bbb49bb49c10eb0.webp',
-            },
             fields: [
                 {
                     name: 'Latence API',

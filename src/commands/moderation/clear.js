@@ -46,7 +46,7 @@ module.exports = {
 
             await interaction.channel.bulkDelete(filteredTargetMessages, true).then(messages => {
                 const embedTarget = {
-                    color: 0xFFEE45,
+                    color: 0x735B8B,
                     description: `${messages.size} messages de ${user} supprimé`
                 }
                 interaction.reply({ embeds: [embedTarget] })
@@ -56,7 +56,7 @@ module.exports = {
         } else {
             await interaction.channel.bulkDelete(amountToDelete, true).then(messages => {
                 const embedNoTarget = {
-                    color: 0xFFEE45,
+                    color: 0x735B8B,
                     description: `${messages.size} messages supprimé`
                 }
                 interaction.reply({ embeds: [embedNoTarget] })

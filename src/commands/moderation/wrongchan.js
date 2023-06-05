@@ -28,7 +28,7 @@ module.exports = {
         
         const embed = new EmbedBuilder()
         .setTitle(':warning: Attention')    
-        .setColor('#d6c26e')
+        .setColor('#735B8B')
         .setDescription(`<@${interaction.user.id}> te fais remarquer que ton message n'est pas dans le bon salon textuel. Il faudrait plutôt l'envoyer dans ${channel} s'il te plait.`)
         .setTimestamp()
         .setFooter({ text: interaction.user.tag, iconURL: interaction.user.displayAvatarURL()})
