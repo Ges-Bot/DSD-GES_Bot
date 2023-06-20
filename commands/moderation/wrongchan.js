@@ -22,7 +22,7 @@ module.exports = {
             required: true,
         },
     ],
-    runInteraction(client, interaction){
+    async runInteraction(client, interaction){
         const user = interaction.options.getUser('user');
         const channel = interaction.options.getChannel('channel');
         

@@ -3,12 +3,11 @@ const { ApplicationCommandOptionType, PermissionFlagsBits } = require('discord.j
 module.exports = {
     name: 'clear',
     category: 'moderation',
-    defaultMemberPermissions: PermissionFlagsBits.ManageMessages,
     ownerOnly: false,
     usage: 'clear [amount] <@user>',
     examples: ['clear 50', 'clear 50 @Silvus_tv'],
+    defaultMemberPermissions: PermissionFlagsBits.ManageMessages,
     description: 'Supprimer un nombre de messages spécifié d\'un salon ou membre.',
-
     options:[
         {
             name: 'nombre',
@@ -23,7 +22,7 @@ module.exports = {
             required: false,
         }
     ],
-    callback: async (client, interaction) => {
+    async runInteraction(client, interaction){
         // Check le nombre de messages a delete
         const amountToDelete = interaction.options.getNumber('nombre');
         if (amountToDelete > 100 || amountToDelete <= 0) return interaction.reply({ content: 'Le \`NOMBRE\` doit être inférieur à 100 et supérieur à 0.', ephemeral: true });
@@ -60,7 +59,7 @@ module.exports = {
                     description: `${messages.size} messages supprimé`
                 }
                 interaction.reply({ embeds: [embedNoTarget] })
-                .then(setTimeout(() => interaction.deleteReply(), 10000));
+                .then(setTimeout(() => interaction.deleteReply(), 2000));
             });
         }
     }

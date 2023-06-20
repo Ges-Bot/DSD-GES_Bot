@@ -8,7 +8,7 @@ module.exports = {
     examples: ['ping'],
     defaultMemberPermissions: PermissionFlagsBits.SendMessages,
     description: 'Connaitre la latence du bot.',
-    callback: async (client, interaction) => {
+    async runInteraction(client, interaction){
         const tryPong = await interaction.reply({content: "Attention, pong imminent...", fetchReply: true});
         const embedQuestion = {
             color: 0x735B8B,
