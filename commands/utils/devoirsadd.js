@@ -25,7 +25,6 @@ module.exports = {
             name: 'date',
             description: 'date du control, ecrit en DD/MM/YYYY',
             type: ApplicationCommandOptionType.String,
-            choices: days(),
             required: true
         },
         {
@@ -99,9 +98,15 @@ module.exports = {
 
     ],
     async runInteraction(client, interaction) {
-        const hourArray = interaction.options.getString('heure').split(":");
+
         const dateArray = interaction.options.getString('date').split("/")
-        const secondDate = new Date(parseInt(dateArray[2]), parseInt(dateArray[1])-1, parseInt(dateArray[0]), parseInt(hourArray[0]), parseInt(hourArray[1])).getTime()/1000;
+        if(interaction.options.getString('heure') !== null){
+            const hourArray = interaction.options.getString('heure').split(":");
+            var secondDate = new Date(parseInt(dateArray[2]), parseInt(dateArray[1])-1, parseInt(dateArray[0]), parseInt(hourArray[0]), parseInt(hourArray[1])).getTime()/1000;
+        }else{
+            var secondDate = new Date(parseInt(dateArray[2]), parseInt(dateArray[1])-1, parseInt(dateArray[0])).getTime()/1000;
+        }
+
         const matiere = interaction.options.getNumber('matiere');
         const type = interaction.options.getString('type');
         const association = interaction.options.getString('association');
@@ -148,7 +153,4 @@ function matiere(db){
 
     })
     return result
-}
-function days(){
-    const dateToday = new Date
 }

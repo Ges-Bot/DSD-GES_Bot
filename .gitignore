@@ -11,3 +11,4 @@ node_modules/
 #editor
 .idea
 /color
+DB/bot.db
