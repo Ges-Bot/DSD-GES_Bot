@@ -16,8 +16,7 @@ module.exports = {
     description: 'Initialiser les bases de donnée.',
 
     async runInteraction(client, interaction){
-        let profs, matiere, devoir;
-
+        let profs, matiere, devoir, guildList;
 
 //Create tables
 
@@ -38,13 +37,28 @@ module.exports = {
                                             associate TEXT,
                                             matiereid INTEGER,
                                             date INT,
-    
                                             FOREIGN KEY(matiereid) REFERENCES matiere(id)
                                             );`;
+        guildList = `CREATE TABLE IF NOT EXISTS guild_list(id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                                guild_id INTEGER,
+                                                guild_name TEXT);`
 
         db.run(profs);
         db.run(matiere);
         db.run(devoir);
-        interaction.reply({ content: 'La base de donnée a bien été mise à jour', ephemeral: true })
+        db.run(guildList)
+
+        let response;
+        response = 'Les requêtes ont bien été éxécuté\n'
+
+        db.all(`SELECT * FROM guild_list WHERE guild_id = ${interaction.guild.id}`, [], (err, results) =>{
+            if (results.length === 0){
+                db.run(`insert into guild_list(guild_id, guild_name) VALUES (${interaction.guild.id}, \'${interaction.guild.name}\')`)
+                response += 'La guild id à bien été ajouter a la base'
+            }else{
+                response += 'La guild est déja présente dans la base de donnée'
+            }
+            interaction.reply({ content: response, ephemeral: true })
+        })
     }
 };
