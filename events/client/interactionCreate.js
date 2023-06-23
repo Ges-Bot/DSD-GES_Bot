@@ -11,6 +11,10 @@ module.exports = {
             }
 
             cmd.runInteraction(client, interaction);
+        }else if (interaction.isStringSelectMenu()){
+            const selectMenu = client.selects.get(interaction.customId);
+            if (!selectMenu) return interaction.reply('ce menu n\'existe pas.')
+            selectMenu.runInteraction(client, interaction);
         }
     },
 };

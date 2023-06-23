@@ -5,7 +5,8 @@ const client = new Client({intents: 579})
 
 client.commands = new Collection();
 
-['CommandUtil', 'EventUtil'].forEach(handler=>{require(`./utils/handlers/${handler}`)(client)});
+['selects'].forEach(x=>client[x] = new Collection());
+['CommandUtil', 'EventUtil', 'SelectUtil'].forEach(handler=>{require(`./utils/handlers/${handler}`)(client)});
 
 process.on('exit', code => {console.log(`le processus s'est arrêté avec le code ${code}!`)});
 process.on('uncaughtException', (err,origin)=>{console.log(`UNCAUGHT_EXCEPTION: ${err}`, `Origine:${origin}`)});
