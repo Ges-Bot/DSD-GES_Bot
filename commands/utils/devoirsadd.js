@@ -112,8 +112,9 @@ module.exports = {
         const association = interaction.options.getString('association');
         const description = interaction.options.getString('description');
 
-        const importRequest =
-        db.run(`INSERT INTO devoir (devoir_type, comment, associate, matiereid, date) VALUES (\'${type}\', \'${description}\',\'${association}\', \'${matiere}\', \'${secondDate}\')`);
+        db.get(`SELECT id FROM guild_list WHERE guild_id = ${interaction.guild.id}`, (err, guildID)=>{
+            db.run(`INSERT INTO devoir (devoir_type, comment, associate, matiereid, date, guildid) VALUES (\'${type}\', \'${description}\',\'${association}\', \'${matiere}\', \'${secondDate}\', \'${guildID.id}\')`);
+        })
 
         const embedQuestion = {
             color: 0x735B8B,
