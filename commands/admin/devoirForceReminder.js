@@ -1,29 +1,32 @@
-const sqlite3 = require("sqlite3").verbose();
+const { PermissionFlagsBits, EmbedBuilder, Client} = require('discord.js');
 const dateNow =Math.round( new Date().getTime()/1000)
 const dateOneWeek =dateNow + 518400
-const cron = require("node-cron")
-const {EmbedBuilder} = require("discord.js");
-
-
+const sqlite3 = require("sqlite3").verbose();
 //connexion
 const db = new sqlite3.Database(process.env.DB_LOCATION, sqlite3.OPEN_READWRITE, (err) =>{
     if(err) return console.log(err.message);
 } );
 
-module.exports = async (client)=>{
 
-    //Lance le script tout les 5eme jours de la semaine à 18h00 -> `0 18 * * 5`
-    cron.schedule(`0 18 * * 5`, ()=>{
+module.exports = {
+    name: 'forcedevoirannonce',
+    category: 'moderation',
+    defaultMemberPermissions: PermissionFlagsBits.Administrator,
+    ownerOnly: false,
+    usage: 'forcedevoirannonce',
+    examples: 'forcedevoirannonce',
+    description: 'Ajouter de la configuration à la base de donée.',
+    async runInteraction(client, interaction){
         db.all(`SELECT * FROM guild_list`, [BigInt(true)], (err,guildIds)=>{
 
             guildIds.forEach((guildId)=>{
                 const currentGuildId = guildId.guild_id;
 
                 const request =`SELECT * FROM devoir
-                INNER JOIN main.matiere m on m.id = devoir.matiereid
-                INNER JOIN main.profs p on p.id = m.profid
-                INNER JOIN main.guild_list gl on gl.id = devoir.guildid
-                WHERE date >= ${dateNow} AND date <= ${dateOneWeek} AND gl.guild_id = ${currentGuildId.toString()}`;
+                                                  INNER JOIN main.matiere m on m.id = devoir.matiereid
+                                                  INNER JOIN main.profs p on p.id = m.profid
+                                                  INNER JOIN main.guild_list gl on gl.id = devoir.guildid
+                                WHERE date >= ${dateNow} AND date <= ${dateOneWeek} AND gl.guild_id = ${currentGuildId.toString()}`;
                 db.all(request,
                     [],
                     (err, devoirs)=>{
@@ -85,10 +88,10 @@ module.exports = async (client)=>{
 
 
                             channel.send({embeds: [embedDevoirs]});
+                            interaction.reply({content:`Le message d'annonce à été envoyer dans le salon <#${id.channel_devoir_id}>`, ephemeral: true})
                         })
                     })
             })
         })
-
-    })
-}
+    }
+};
