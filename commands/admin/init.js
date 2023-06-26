@@ -102,7 +102,14 @@ module.exports = {
                 }));
                 response += '\nLa guild est déja présente dans la base de donnée'
             }
-            db.run(guildConfig)
+            db.run(guildConfig, (err)=>{
+                if(err !== "null"){
+                    db.get(`SELECT id FROM guild_list WHERE guild_id = ${interaction.guild.id}`, (err, idGuildId)=>{
+                        db.run(`INSERT INTO guild_config(guildid) VALUES (${idGuildId.id})`)
+                    })
+                }
+            })
+
             db.run(devoir);
 
             if (defaultValue) {
