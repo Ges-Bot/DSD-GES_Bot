@@ -6,11 +6,11 @@ const db = new sqlite3.Database(process.env.DB_LOCATION, sqlite3.OPEN_READWRITE,
 });
 
 module.exports = {
-    name: 'add',
+    name: 'ajouterdevoir',
     category: 'utils',
     ownerOnly: false,
-    usage: 'add',
-    examples: ['add'],
+    usage: 'ajouterdevoir',
+    examples: ['ajouterdevoir'],
     defaultMemberPermissions: PermissionFlagsBits.ManageChannels,
     description: 'Ajouter des devoirs à la liste',
     options: [
