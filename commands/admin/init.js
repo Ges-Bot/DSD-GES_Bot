@@ -132,7 +132,8 @@ function addProf(){
                  ('Erika','DELOBELLE', 'edelobelle@myges.fr'),
                  ('Bertrand','DAVAL', 'bdaval1@myges.fr'),
                  ('Christine','LENOIR', 'Christine.THUILLATLENOIR@bpce-it.fr'),
-                 ('Martin','VERILHAC', 'vmartin34@myges.fr')`;
+                 ('Martin','VERILHAC', 'vmartin34@myges.fr'),
+                 ('Frederic','LOZE', 'floze@myges.fr')`;
     db.run(profs);
 }
 function addMatiere(idGuildId){
@@ -149,6 +150,7 @@ function addMatiere(idGuildId){
                ('Langage C',7,${idGuildId}),
                ('Projet Annuel',7,${idGuildId}),
                ('Méthodologie et développement personnel',8,${idGuildId}),
-               ('Virtualisation serveur et stockage',9,${idGuildId}) `;
+               ('Virtualisation serveur et stockage',9,${idGuildId}),
+               ('Mathématiques générales',10,${idGuildId})`;
     db.run(matieres);
 }
