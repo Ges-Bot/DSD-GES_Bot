@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-const {PermissionFlagsBits, ApplicationCommandOptionType, StringSelectMenuBuilder, StringSelectMenuOptionBuilder,
+const {PermissionFlagsBits, StringSelectMenuBuilder, StringSelectMenuOptionBuilder,
     ActionRowBuilder
 } = require('discord.js');
 const dateNow =new Date().getTime()/1000
@@ -9,7 +9,7 @@ const db = new sqlite3.Database(process.env.DB_LOCATION, sqlite3.OPEN_READWRITE,
 });
 
 module.exports = {
-    name: 'supprimerdevoir',
+    name: 'removedevoir',
     category: 'utils',
     ownerOnly: false,
     usage: 'supprimerdevoir',

@@ -4,7 +4,7 @@ const db = new sqlite3.Database(process.env.DB_LOCATION, sqlite3.OPEN_READWRITE,
     if(err) return console.log(err.message);
 } );
 
-const { ApplicationCommandOptionType, PermissionFlagsBits } = require('discord.js');
+const { PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     name: 'droptable',

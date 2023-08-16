@@ -6,7 +6,7 @@ const db = new sqlite3.Database(process.env.DB_LOCATION, sqlite3.OPEN_READWRITE,
 });
 
 module.exports = {
-    name: 'ajouterdevoir',
+    name: 'devoiradd',
     category: 'utils',
     ownerOnly: false,
     usage: 'ajouterdevoir',
@@ -100,11 +100,12 @@ module.exports = {
     async runInteraction(client, interaction) {
 
         const dateArray = interaction.options.getString('date').split("/")
+        var secondDate
         if(interaction.options.getString('heure') !== null){
             const hourArray = interaction.options.getString('heure').split(":");
-            var secondDate = new Date(parseInt(dateArray[2]), parseInt(dateArray[1])-1, parseInt(dateArray[0]), parseInt(hourArray[0]), parseInt(hourArray[1])).getTime()/1000;
+            secondDate = new Date(parseInt(dateArray[2]), parseInt(dateArray[1])-1, parseInt(dateArray[0]), parseInt(hourArray[0]), parseInt(hourArray[1])).getTime()/1000;
         }else{
-            var secondDate = new Date(parseInt(dateArray[2]), parseInt(dateArray[1])-1, parseInt(dateArray[0])).getTime()/1000;
+            secondDate = new Date(parseInt(dateArray[2]), parseInt(dateArray[1])-1, parseInt(dateArray[0])).getTime()/1000;
         }
 
         const matiere = interaction.options.getNumber('matiere');

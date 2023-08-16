@@ -1,4 +1,4 @@
-const { PermissionFlagsBits, EmbedBuilder, Client} = require('discord.js');
+const { PermissionFlagsBits, EmbedBuilder} = require('discord.js');
 const dateNow =Math.round( new Date().getTime()/1000)
 const dateOneWeek =dateNow + 518400
 const sqlite3 = require("sqlite3").verbose();
