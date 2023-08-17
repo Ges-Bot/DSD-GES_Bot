@@ -13,7 +13,7 @@ module.exports = {
     ownerOnly: false,
     usage: 'addprof',
     examples: 'addprof',
-    description: 'Ajouter un intervenant à la base de donnée',
+    description: 'Ajouter un intervenant à la base de donnée NOT USABLE',
     options:[
         {
             name: 'prenom',
