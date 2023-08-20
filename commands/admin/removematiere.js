@@ -32,7 +32,7 @@ module.exports = {
             if (err === null) {
                 const embedConfigList = {
                     color: 0x735B8B,
-                    title: 'Intervenant',
+                    title: 'Matière',
                     description: `La matière à bien été suprimmer de la base`
                 }
                 interaction.reply({embeds: [embedConfigList], ephemeral: true})
