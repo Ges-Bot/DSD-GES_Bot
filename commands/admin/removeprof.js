@@ -7,12 +7,12 @@ const db = new sqlite3.Database(process.env.DB_LOCATION, sqlite3.OPEN_READWRITE,
 const {ApplicationCommandOptionType, PermissionFlagsBits} = require('discord.js');
 
 module.exports = {
-    name: 'rmprof',
+    name: 'removeprof',
     category: 'moderation',
     defaultMemberPermissions: PermissionFlagsBits.Administrator,
     ownerOnly: false,
-    usage: 'rmprof',
-    examples: 'rmprof',
+    usage: 'removeprof',
+    examples: 'removeprof',
     description: 'Supprimer un intervenant de la base de donnée',
     options: [
         {
