@@ -33,13 +33,9 @@ module.exports = {
         const matiereName = interaction.options.getString('nom')
         const profId = interaction.options.getNumber('prof');
         db.get(`SELECT id FROM guild_list WHERE guild_id = ${interaction.guild.id}`, (err, idGuildId)=>{
-            console.log(matiereName)
-            console.log(profId)
-            console.log(idGuildId.id)
 
             db.run(`INSERT INTO matiere (name, profid, guildid)
                     VALUES (\'${matiereName}\', \'${profId}\', \'${idGuildId.id}\')`, err => {
-                console.log(err)
                 if (err === null) {
                     const embedConfigList = {
                         color: 0x735B8B,
