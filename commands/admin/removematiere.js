@@ -24,11 +24,11 @@ module.exports = {
         },
     ],
     async runInteraction(client, interaction) {
-        const profId = interaction.options.getNumber('prof');
+        const matiereId = interaction.options.getNumber('matière');
 
         db.run(`DELETE
                 FROM matiere
-                WHERE id = ${profId}`, err => {
+                WHERE id = ${matiereId}`, err => {
             if (err === null) {
                 const embedConfigList = {
                     color: 0x735B8B,
