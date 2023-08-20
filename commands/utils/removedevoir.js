@@ -29,8 +29,6 @@ module.exports = {
                      order by date asc`;
 
         db.all(request, [], (err, rows) => {
-            console.log(rows)
-            console.log(rows.length)
             if (rows.length !== 0) {
                 rows.forEach((row) => {
                     devoirDate.setTime(row.date * 1000);
