@@ -18,8 +18,8 @@ module.exports = {
     description: 'Supprimer un devoir dans la liste',
     async runInteraction(client, interaction) {
         let menu = new StringSelectMenuBuilder()
-            .setCustomId(`sub-menu`)
-            .setPlaceholder('Je suis un placeholder')
+            .setCustomId(`removedevoir_sub-menu`)
+            .setPlaceholder('Selectionnez un devoir')
             .setMaxValues(1)
 
         let devoirDate = new Date(null);

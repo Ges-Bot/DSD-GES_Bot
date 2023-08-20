@@ -6,7 +6,7 @@ const db = new sqlite3.Database(process.env.DB_LOCATION, sqlite3.OPEN_READWRITE,
 });
 
 module.exports = {
-    name: "sub-menu",
+    name: "removedevoir_sub-menu",
     async runInteraction(client, interaction){
         console.log(interaction.values[0])
 

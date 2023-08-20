@@ -14,7 +14,7 @@ const request = `SELECT * FROM devoir
                         inner join main.profs p on p.id = m.profid
                         where date > ${dateNow}
                         order by date asc `;
-
+console.log(dateNow)
 module.exports = {
     name: 'devoirs',
     category: 'utils',
@@ -34,7 +34,7 @@ module.exports = {
                 (row.devoir_type)? result += `**Type de rendu**: ${row.devoir_type}\n` :"";
                 (row.associate)? result += `**Ressource lié**: ${row.associate}\n` :"";
             })
-            if (!result || result.length == 1){
+            if (!result || result.length === 1) {
                 result = "Pas de devoir en approche"
             }
             const embedQuestion = {
