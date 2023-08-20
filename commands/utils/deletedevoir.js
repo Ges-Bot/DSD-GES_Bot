@@ -9,11 +9,11 @@ const db = new sqlite3.Database(process.env.DB_LOCATION, sqlite3.OPEN_READWRITE,
 });
 
 module.exports = {
-    name: 'removedevoir',
+    name: 'deletedevoir',
     category: 'utils',
     ownerOnly: false,
-    usage: 'supprimerdevoir',
-    examples: ['supprimerdevoir'],
+    usage: 'deletedevoir',
+    examples: ['deletedevoir'],
     defaultMemberPermissions: PermissionFlagsBits.ManageChannels,
     description: 'Supprimer un devoir dans la liste',
     async runInteraction(client, interaction) {
