@@ -29,19 +29,29 @@ module.exports = {
                      order by date asc`;
 
         db.all(request, [], (err, rows) => {
-            rows.forEach((row) => {
-                devoirDate.setTime(row.date*1000);
-                menu.addOptions(
-                    new StringSelectMenuOptionBuilder()
-                        .setLabel(row.name)
-                        .setDescription(row.devoir_type + ' pour le : '+ devoirDate.toLocaleString())
-                        .setValue(row.id.toString())
-                )
-            })
-            interaction.reply({
-                components: [new ActionRowBuilder().addComponents(menu)],
-                ephemeral:true
-            });
+            console.log(rows)
+            console.log(rows.length)
+            if (rows.length !== 0) {
+                rows.forEach((row) => {
+                    devoirDate.setTime(row.date * 1000);
+                    menu.addOptions(
+                        new StringSelectMenuOptionBuilder()
+                            .setLabel(row.name)
+                            .setDescription(row.devoir_type + ' pour le : ' + devoirDate.toLocaleString())
+                            .setValue(row.id.toString())
+                    )
+                })
+                interaction.reply({
+                    components: [new ActionRowBuilder().addComponents(menu)],
+                    ephemeral: true
+                });
+            } else {
+                interaction.reply({
+                    content: 'Il n\'y à pas de devoir enregistré sur ce serveur.',
+                    ephemeral: true
+                });
+            }
+
         })
     }
 }
