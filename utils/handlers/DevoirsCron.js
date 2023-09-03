@@ -23,7 +23,11 @@ module.exports = async (client)=>{
                 INNER JOIN main.matiere m on m.id = devoir.matiereid
                 INNER JOIN main.profs p on p.id = m.profid
                 INNER JOIN main.guild_list gl on gl.id = devoir.guildid
-                WHERE date >= ${dateNow} AND date <= ${dateOneWeek} AND gl.guild_id = ${currentGuildId.toString()}`;
+                INNER JOIN main.guild_config gc on devoir.guildid = gc.guildid
+                                WHERE date >= ${dateNow}
+                                  AND date <= ${dateOneWeek}
+                                  AND gl.guild_id = ${currentGuildId.toString()}
+                                  AND gc.reminder = 1 `;
                 db.all(request,
                     [],
                     (err, devoirs)=>{
