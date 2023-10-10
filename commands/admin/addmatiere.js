@@ -35,8 +35,9 @@ module.exports = {
         db.get(`SELECT id FROM guild_list WHERE guild_id = ${interaction.guild.id}`, (err, idGuildId)=>{
 
             db.run(`INSERT INTO matiere (name, profid, guildid)
-                    VALUES (\'${matiereName}\', \'${profId}\', \'${idGuildId.id}\')`, err => {
+                    VALUES (\'${matiereName.replace('\'', '\\\'')}\', \'${profId}\', \'${idGuildId.id}\')`, err => {
                 if (err === null) {
+                    console.log(`new matiere add : ` + matiereName)
                     const embedConfigList = {
                         color: 0x735B8B,
                         title: 'Matiere',
