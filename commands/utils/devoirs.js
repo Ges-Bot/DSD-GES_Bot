@@ -14,7 +14,6 @@ const request = `SELECT * FROM devoir
                         inner join main.profs p on p.id = m.profid
                         where date > ${dateNow}
                         order by date asc `;
-console.log(dateNow)
 module.exports = {
     name: 'devoirs',
     category: 'utils',
