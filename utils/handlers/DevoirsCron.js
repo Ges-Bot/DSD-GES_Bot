@@ -35,8 +35,8 @@ module.exports = async (client)=>{
                         if (devoirs.length === 0){
                             embedDevoirs
                                 .setColor('#' + process.env.EMBED_COLOR.toString())
-                                .setTitle('Liste des devoirs pour la semaine')
-                                .setDescription('Pas de devoir pour cette semaine')
+                              .setTitle('Liste des devoirs pour la pochaine fois')
+                              .setDescription('Pas de devoir en vue')
                                 .setTimestamp()
                                 .setFooter({
                                     text: client.user.tag,
@@ -45,7 +45,7 @@ module.exports = async (client)=>{
                         }else{
                             embedDevoirs
                                 .setColor('#' + process.env.EMBED_COLOR.toString())
-                                .setTitle('Liste des devoirs pour la semaine')
+                              .setTitle('Liste des devoirs pour la pochaine fois')
                                 .setTimestamp()
                                 .setFooter({
                                     text: client.user.tag,

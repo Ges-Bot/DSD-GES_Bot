@@ -34,17 +34,26 @@ module.exports = {
     ],
     async runInteraction(client, interaction) {
         const isActive = interaction.options.getNumber('active');
-        console.log(isActive)
-        db.get(`SELECT reminder, guild_config.guildid
+        db.get(`SELECT reminder, guildid
                 FROM guild_config
                          INNER JOIN main.guild_list gl on gl.id = guild_config.guildid
                 WHERE gl.guild_id = ${interaction.guild.id}`, (err, isEnable) => {
+            // console.log(interaction.guild.id)
+            // console.log(isEnable)
+            // console.log("id updated : " + isEnable.guildid + "with value : " + isActive + "(the actual value is : " + isEnable.reminder + ")")
 
-            console.log(isEnable)
-            console.log("id updated : " + isEnable.guildid + "with value : " + isActive + "(the actual value is : " + isEnable.reminder + ")")
+            if (isEnable === undefined) {
 
-            if (isEnable.reminder !== isActive) {
-                console.log('true')
+                db.run(`
+                    UPDATE guild_config
+                    SET reminder = ${isActive}
+                    WHERE guildid = ${interaction.guild.id};
+                `, err => {
+                    if (err !== null) {
+                        console.log(err)
+                    }
+                })
+            } else if (isEnable.reminder !== isActive) {
                 db.run(`
                     UPDATE guild_config
                     SET reminder = ${isActive}
